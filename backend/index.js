@@ -7,7 +7,7 @@ const connectDB = require('./src/config/database');
 const dataRoutes = require('./src/route/dataRoute');
 
 app.use(cors({
-    origin: ['http://localhost:5173','http://localhost:5174','https://side-project-frontend-five.vercel.app/'],
+    origin: ['http://localhost:5173','http://localhost:5174','https://side-project-frontend-five.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
     credentials: true,
 }));
