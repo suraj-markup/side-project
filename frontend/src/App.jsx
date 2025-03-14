@@ -8,10 +8,22 @@ function App() {
   const [files, setFiles] = useState([]);
   
   const fetchData = async () => {
-    const res = await axios.get('https://side-project-t4jc.vercel.app/api/upload');
-    setFiles(res.data);
+    try {
+      const res = await axios.get('https://side-project-t4jc.vercel.app/api/upload');
+      setFiles(res.data);
+      
+      // Store the data in localStorage for future use
+      localStorage.setItem('filesData', JSON.stringify(res.data));
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      
+      // Try to get data from localStorage if API call fails
+      const cachedData = localStorage.getItem('filesData');
+      if (cachedData) {
+        setFiles(JSON.parse(cachedData));
+      }
+    }
   }
-
   const updateQuestion = async (fileId, questionId, isUploaded, newSet, newSetQuestion) => {
     try {
       const res = await axios.patch(`https://side-project-t4jc.vercel.app/api/upload/${fileId}/${questionId}`, {
