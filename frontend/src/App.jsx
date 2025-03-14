@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import './App.css'
 
+
 function App() {
   const [files, setFiles] = useState([]);
   
   const fetchData = async () => {
-    const res = await axios.get('http://localhost:3000/api/upload');
-    console.log(res.data);
+    const res = await axios.get('https://side-project-t4jc.vercel.app/api/upload');
     setFiles(res.data);
   }
 
   const updateQuestion = async (fileId, questionId, isUploaded, newSet, newSetQuestion) => {
     try {
-      const res = await axios.patch(`http://localhost:3000/api/upload/${fileId}/${questionId}`, {
+      const res = await axios.patch(`https://side-project-t4jc.vercel.app/api/upload/${fileId}/${questionId}`, {
         isUploaded: isUploaded,
         set: newSet,
         setQuestion: newSetQuestion
@@ -45,40 +45,6 @@ function App() {
     fetchData();
   }, []);
 
-//   const questionData = [{
-//     "isUploaded": false,
-//     "_id": "67a866db00860cd0db237499",
-//     "question_number": 31,
-//     "question_text": "Position of an ant (S in metres) moving in Y-Z plane is given by S = 2t²ĵ + 5k̂ (where t is in second). The magnitude and direction of velocity of the ant at t = 1 s will be :",
-//     "options": [
-//         "1. 16 m/s in y-direction",
-//         "2. 4 m/s in x-direction",
-//         "3. 9 m/s in z-direction",
-//         "4. 4 m/s in y-direction"
-//     ],
-//     "topic": "Physics",
-//     "Exam Name": "Final JEE-Main Exam January",
-//     "Year": 2024,
-//     "__v": 0,
-//     "set": 2
-//   },
-//   {
-//     "set": null,
-//     "isUploaded": false,
-//     "_id": "67a866db00860cd0db23749a",
-//     "question_number": 32,
-//     "question_text": "Given below are two statements : Statement (I) : Viscosity of gases is greater than that of liquids. Statement (II) : Surface tension of a liquid decreases due to the presence of insoluble impurities. In the light of the above statements, choose the most appropriate answer from the options given below :",
-//     "options": [
-//         "1. Statement I is correct but statement II is incorrect",
-//         "2. Statement I is incorrect but Statement II is correct",
-//         "3. Both Statement I and Statement II are incorrect",
-//         "4. Both Statement I and Statement II are correct"
-//     ],
-//     "topic": "Physics",
-//     "Exam Name": "Final JEE-Main Exam January",
-//     "Year": 2024,
-//     "__v": 0
-// }];
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
